@@ -18,6 +18,8 @@ export function Home() {
 
   /*Every time I call the "handleAddStudent()" function, it will call an object that has two properties, the name, stored inside "studentName", and the time, as being the current time. After the assembled object, I will add it in the "setStudents" state*/
 
+  const [user, setUser] = useState({name: '', avatar: ''});
+
   function handleAddStudent() {
     const newStudent = {
       name: studentName,
@@ -39,9 +41,19 @@ export function Home() {
   useEffect(() => {
     /*Body of useEffect*/
     //Everything here is actions or things I want to be done, and an useEffect is executed when the interface is rendered - automatically
-  console.log("useEffect foi chamado!");
-  }
-  ,[]);
+  fetch('https://api.github.com/users/estherferreira')
+  .then(Response => Response.json())
+  .then(data => {
+    setUser
+    ({name: data.name,
+    avatar: data.avatar_url,})
+
+  })
+  },[]);
+
+  //I can too make: [students, studentName, etc]
+
+  /*By default, useEffect executes whatever is inside it the first time the page is rendered, but if I want it to execute something depending on a state, I just indicate the state inside the square bracket.*/
 
   return (
 
@@ -49,8 +61,8 @@ export function Home() {
       <header>
         <h1>Lista de Presença</h1>
         <div>
-          <strong>Esther</strong>
-          <img src="https://github.com/estherferreira.png" alt="Profile picture" />
+          <strong>{user.name}</strong>
+          <img src={user.avatar} alt="Profile picture" />
         </div>
         </header>
       <input
