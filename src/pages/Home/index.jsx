@@ -2,7 +2,7 @@
 
 //Examples of hooks: useState, useEffect.
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css'
 import { Card } from '../../components/Card';
 
@@ -35,6 +35,13 @@ export function Home() {
 
     //"..." called spread operator.
   }
+
+  useEffect(() => {
+    /*Body of useEffect*/
+    //Everything here is actions or things I want to be done, and an useEffect is executed when the interface is rendered - automatically
+  console.log("useEffect foi chamado!");
+  }
+  ,[]);
 
   return (
 
