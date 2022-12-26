@@ -1,1 +1,1 @@
-A attendance list made with the React framework.
+A attendance list made with React.
